@@ -1,5 +1,6 @@
 package com.nttdata.pe.product.controller;
 
+import com.nttdata.pe.product.configuration.CacheProperties;
 import com.nttdata.pe.product.model.Product;
 import com.nttdata.pe.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +13,17 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+
+    @Autowired
+    private CacheProperties cacheProperties;
 
     @GetMapping("/products")
     public List<Product> getProductsAllController() {
         return productService.getProductsAllService();
     }
+
+    @GetMapping("/cache/properties")
+    public CacheProperties getCachePropertiesController() { return cacheProperties; }
 
 }
